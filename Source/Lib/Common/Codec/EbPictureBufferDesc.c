@@ -96,31 +96,31 @@ EbErrorType eb_picture_buffer_desc_ctor(EbPictureBufferDesc *pictureBufferDescPt
 
     // Allocate the Picture Buffers (luma & chroma)
     if (picture_buffer_desc_init_data_ptr->buffer_enable_mask & PICTURE_BUFFER_DESC_Y_FLAG) {
-        EB_CALLOC_ALIGNED_ARRAY(pictureBufferDescPtr->buffer_y,
+        EB_MALLOC_ALIGNED_ARRAY(pictureBufferDescPtr->buffer_y,
                                 pictureBufferDescPtr->luma_size * bytes_per_pixel);
         pictureBufferDescPtr->buffer_bit_inc_y = 0;
         if (picture_buffer_desc_init_data_ptr->split_mode == EB_TRUE) {
-            EB_CALLOC_ALIGNED_ARRAY(pictureBufferDescPtr->buffer_bit_inc_y,
+            EB_MALLOC_ALIGNED_ARRAY(pictureBufferDescPtr->buffer_bit_inc_y,
                                     pictureBufferDescPtr->luma_size * bytes_per_pixel);
         }
     }
 
     if (picture_buffer_desc_init_data_ptr->buffer_enable_mask & PICTURE_BUFFER_DESC_Cb_FLAG) {
-        EB_CALLOC_ALIGNED_ARRAY(pictureBufferDescPtr->buffer_cb,
+        EB_MALLOC_ALIGNED_ARRAY(pictureBufferDescPtr->buffer_cb,
                                 pictureBufferDescPtr->chroma_size * bytes_per_pixel);
         pictureBufferDescPtr->buffer_bit_inc_cb = 0;
         if (picture_buffer_desc_init_data_ptr->split_mode == EB_TRUE) {
-            EB_CALLOC_ALIGNED_ARRAY(pictureBufferDescPtr->buffer_bit_inc_cb,
+            EB_MALLOC_ALIGNED_ARRAY(pictureBufferDescPtr->buffer_bit_inc_cb,
                                     pictureBufferDescPtr->chroma_size * bytes_per_pixel);
         }
     }
 
     if (picture_buffer_desc_init_data_ptr->buffer_enable_mask & PICTURE_BUFFER_DESC_Cr_FLAG) {
-        EB_CALLOC_ALIGNED_ARRAY(pictureBufferDescPtr->buffer_cr,
+        EB_MALLOC_ALIGNED_ARRAY(pictureBufferDescPtr->buffer_cr,
                                 pictureBufferDescPtr->chroma_size * bytes_per_pixel);
         pictureBufferDescPtr->buffer_bit_inc_cr = 0;
         if (picture_buffer_desc_init_data_ptr->split_mode == EB_TRUE) {
-            EB_CALLOC_ALIGNED_ARRAY(pictureBufferDescPtr->buffer_bit_inc_cr,
+            EB_MALLOC_ALIGNED_ARRAY(pictureBufferDescPtr->buffer_bit_inc_cr,
                                     pictureBufferDescPtr->chroma_size * bytes_per_pixel);
         }
     }
@@ -182,15 +182,15 @@ EbErrorType eb_recon_picture_buffer_desc_ctor(EbPictureBufferDesc *pictureBuffer
 
     // Allocate the Picture Buffers (luma & chroma)
     if (picture_buffer_desc_init_data_ptr->buffer_enable_mask & PICTURE_BUFFER_DESC_Y_FLAG) {
-        EB_CALLOC_ALIGNED_ARRAY(pictureBufferDescPtr->buffer_y,
+        EB_MALLOC_ALIGNED_ARRAY(pictureBufferDescPtr->buffer_y,
                                 pictureBufferDescPtr->luma_size * bytes_per_pixel);
     }
     if (picture_buffer_desc_init_data_ptr->buffer_enable_mask & PICTURE_BUFFER_DESC_Cb_FLAG) {
-        EB_CALLOC_ALIGNED_ARRAY(pictureBufferDescPtr->buffer_cb,
+        EB_MALLOC_ALIGNED_ARRAY(pictureBufferDescPtr->buffer_cb,
                                 pictureBufferDescPtr->chroma_size * bytes_per_pixel);
     }
     if (picture_buffer_desc_init_data_ptr->buffer_enable_mask & PICTURE_BUFFER_DESC_Cr_FLAG) {
-        EB_CALLOC_ALIGNED_ARRAY(pictureBufferDescPtr->buffer_cr,
+        EB_MALLOC_ALIGNED_ARRAY(pictureBufferDescPtr->buffer_cr,
                                 pictureBufferDescPtr->chroma_size * bytes_per_pixel);
     }
     return EB_ErrorNone;

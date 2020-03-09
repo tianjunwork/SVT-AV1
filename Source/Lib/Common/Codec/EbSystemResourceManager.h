@@ -38,9 +38,6 @@ typedef struct EbObjectWrapper {
     //   pictures in the encoder pipeline.
     EbBool release_enable;
 
-    // quit_signal - a flag that main thread sets to break out from kernels
-    EbBool quit_signal;
-
     // system_resource_ptr - a pointer to the SystemResourceManager
     //   that the object belongs to.
     struct EbSystemResource *system_resource_ptr;
@@ -74,6 +71,9 @@ typedef struct EbFifo {
 
     // last_ptr - pointer to the tail of the Fifo
     EbObjectWrapper *last_ptr;
+
+    // quit_signal - a flag that main thread sets to break out from kernels
+    EbBool quit_signal;
 
     // queue_ptr - pointer to MuxingQueue that the EbFifo is
     //   associated with.
@@ -301,16 +301,11 @@ extern EbErrorType eb_get_full_object_non_blocking(EbFifo *          full_fifo_p
      *********************************************************************/
 extern EbErrorType eb_release_object(EbObjectWrapper *object_ptr);
 
-#define EB_SEND_END_OBJ(fifo_ptr, count)               \
-    for (unsigned int i = 0; i < count; i++) {         \
-        EbObjectWrapper *wrapper_ptr;                  \
-        eb_get_empty_object(fifo_ptr, &wrapper_ptr);   \
-        wrapper_ptr->quit_signal = EB_TRUE;            \
-        eb_post_full_object(wrapper_ptr);              \
-    }
-
-#define EB_CHECK_END_OBJ(wrapper_ptr) \
-    if (wrapper_ptr->quit_signal == EB_TRUE) { break; }
+#define EB_GET_FULL_OBJECT(full_fifo_ptr, wrapper_dbl_ptr)                           \
+     do {                                                                            \
+          EbErrorType err = eb_get_full_object(full_fifo_ptr, wrapper_dbl_ptr);      \
+          if (err == EB_NoErrorFifoShutdown)  return NULL;                           \
+     } while (0)
 
 #ifdef __cplusplus
 }

@@ -301,6 +301,16 @@ extern EbErrorType eb_get_full_object_non_blocking(EbFifo *          full_fifo_p
      *********************************************************************/
 extern EbErrorType eb_release_object(EbObjectWrapper *object_ptr);
 
+/*********************************************************************
+     * eb_shutdown_process
+     *   Notify shut down signal to consumer of EbSystemResource.
+     *   So that the consumer process can break the loop and quit running.
+     *
+     *   resource_ptr
+     *      pointer to the SystemResource.
+     *********************************************************************/
+extern EbErrorType eb_shutdown_process(const EbSystemResource *resource_ptr);
+
 #define EB_GET_FULL_OBJECT(full_fifo_ptr, wrapper_dbl_ptr)                           \
      do {                                                                            \
           EbErrorType err = eb_get_full_object(full_fifo_ptr, wrapper_dbl_ptr);      \

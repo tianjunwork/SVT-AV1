@@ -93,7 +93,7 @@ typedef struct EbSvtAv1EncConfiguration {
     /* Number of hierarchical layers used to construct GOP.
      * Minigop size = 2^HierarchicalLevels.
      *
-     * Default is 3. */
+     * Default is 4. */
     uint32_t hierarchical_levels;
 
     /* Prediction structure used to construct GOP. There are two main structures
@@ -232,7 +232,7 @@ typedef struct EbSvtAv1EncConfiguration {
 
     /* Warped motion
     *
-    * Default is -1. */
+    * Default is 0. */
     int enable_warped_motion;
 
     /* Global motion
@@ -379,7 +379,7 @@ typedef struct EbSvtAv1EncConfiguration {
 
     /* Picture based rate estimation
     *
-    * Default is - 1. */
+    * Default is -1. */
     int pic_based_rate_est;
 
     /* Flag to enable the use of default ME HME parameters.
@@ -394,7 +394,7 @@ typedef struct EbSvtAv1EncConfiguration {
 
     /* Flag to enable the use of non-swaure partitions
     *
-    * Default is 1. */
+    * Default is 0. */
     EbBool ext_block_flag;
 
     /* Flag to enable the use of recon pictures for motion estimation
@@ -497,7 +497,7 @@ typedef struct EbSvtAv1EncConfiguration {
      * 1 = Main, allows bit depth of 8.
      * 2 = Main 10, allows bit depth of 8 to 10.
      *
-     * Default is 2. */
+     * Default is 0. */
     uint32_t profile;
     /* Constraints for bitstream in terms of max bitrate and max buffer size.
      *
@@ -594,12 +594,12 @@ typedef struct EbSvtAv1EncConfiguration {
 
     /* Flag to enable Hierarchical Motion Estimation 1/4th of the picture
     *
-    * Default is 1. */
+    * Default is 0. */
     EbBool enable_hme_level1_flag;
 
     /* Flag to enable Hierarchical Motion Estimation full sample of the picture
     *
-    * Default is 1. */
+    * Default is 0. */
     EbBool enable_hme_level2_flag;
 
     // HME Parameters
@@ -621,9 +621,13 @@ typedef struct EbSvtAv1EncConfiguration {
 
     /* Variables to control the use of ALT-REF (temporally filtered frames)
     */
+    /* Default is 1(ON). */
     EbBool  enable_altrefs;
+    /* Default is 5. */
     uint8_t altref_strength;
+    /* Default is 7. */
     uint8_t altref_nframes;
+    /* Default is 0(OFF). */
     EbBool  enable_overlays;
 
     // super-resolution parameters

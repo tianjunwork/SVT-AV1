@@ -98,7 +98,7 @@ enum
 #define PROP_RC_MODE_CQP 0
 #define PROP_RC_MODE_VBR 1
 
-#define PROP_ENCMODE_DEFAULT                7
+#define PROP_ENCMODE_DEFAULT                8
 #define PROP_SPEEDCONTROL_DEFAULT           60
 #define PROP_HIERARCHICAL_LEVEL_DEFAULT     4
 #define PROP_P_FRAMES_DEFAULT               0
@@ -193,8 +193,8 @@ gst_svtav1enc_class_init (GstSvtAv1EncClass * klass)
       g_param_spec_uint ("speed", "speed (Encoder Mode)",
           "Quality vs density tradeoff point"
           " that the encoding is to be performed at"
-          " (0 is the highest quality, 7 is the highest speed) ",
-          0, 7, PROP_ENCMODE_DEFAULT,
+          " (0 is the highest quality, 8 is the highest speed) ",
+          0, 8, PROP_ENCMODE_DEFAULT,
           G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
 
 
@@ -612,6 +612,7 @@ set_default_svt_configuration (EbSvtAv1EncConfiguration * svt_config)
   svt_config->intra_period_length = PROP_GOP_SIZE_DEFAULT - 1;
   svt_config->intra_refresh_type = PROP_INTRA_REFRESH_DEFAULT;
   svt_config->enc_mode = PROP_ENCMODE_DEFAULT;
+  svt_config->snd_pass_enc_mode = PROP_ENCMODE_DEFAULT + 1;
   svt_config->frame_rate = 25;
   svt_config->frame_rate_denominator = 1;
   svt_config->frame_rate_numerator = 25;

@@ -60,7 +60,7 @@ This plugin uses `meson` build tools and the dependency on SVT-AV1 library is se
 Make sure first that SVT-AV1 library is installed and can be found using pkg-config. You can do that using CMake:
 
 ``` bash
-cmake -P SVT-AV1/Build/linux/release/Source/Lib/Encoder/cmake_install.cmake
+cmake -P SVT-AV1/Build/linux/Release/Source/Lib/Encoder/cmake_install.cmake
 ```
 
 Then you can compile and install the plugin the following way:
